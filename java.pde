@@ -22,8 +22,8 @@ strokeWeight(5);
    float dy = targetY - y;
    y += dy * easing;
 
-xp = 100;
-yp =100;
+xp = 1;
+yp =1;
 
 circle(x+xp*25, y+yp*150, 50);
 circle(x+xp*375, y+yp*150, 50);
