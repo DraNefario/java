@@ -25,8 +25,8 @@ strokeWeight(5);
 xp = 100;
 yp =100;
 
-circle(x+xp*0.6, y+yp*1, 50);
-circle(x+xp*4.1, y+yp*1, 50);
-rect(x+xp*2, y+yp*0.00001, 200, 60);
-rect(x+xp*0.4, y+yp*0.300, 400, 80);
+circle(x+xp*25, y+yp*150, 50);
+circle(x+xp*375, y+yp*150, 50);
+rect(x+xp*200, y+yp*0, 200, 60);
+rect(x+xp*0.4, y+yp*65, 400, 80);
 }
