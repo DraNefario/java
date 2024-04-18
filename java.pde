@@ -22,15 +22,20 @@ void draw() {
   x1 = width/3 + amplitude1 * sin(angle1);
   x2 = width/3 + amplitude * sin(angle2);
   
-  float c = map(x, 0, width, 0, 255);
-  float b = map(x, 0, width, 0, 255);
-  float e = map(x, 0, width, 255, 0);
+  float c = map(x, 0, width, 100, 255);
+  float b = map(x, 0, width, 100, 255);
+  float e = map(x, 0, width, 255, 100);
   float d = map(mouseX, 0, width, 100, 600);
   float a = d/400;
   float s = 100;
   
+  
+  map(a);
+  
+  
   fill(0, 0, 0);
   rect(10*a, height/7*3*a, width*a*100, 200*a);
+  
   fill(255, 204, 0); 
 
   int numRetangulos = 36;
@@ -51,36 +56,58 @@ void draw() {
   
    colisao1 = h < j + t && j < h + t && l < k + o && k < l + o;
   
-  colisao(a, b, c, d, e, s, colisao1);
-  carDraw(e, b, a, x, d);
+  
+  carDraw1(e, b, a, x, d, c);
+  carDraw2(e, b, a, x, d, c);
+  
+ // casaDraw(a); 
+  
 
   angle += TWO_PI / period;
   angle1 += TWO_PI / period1;
   angle2 += TWO_PI / period;
 }
 
-void carDraw(float e, float b, float a, float x, float d) {
-  fill(0, b, e); 
+void map(float a) {
+  fill(0, 255, 0);
+  rect(10*a, height/10*3*a, width*a*100, 3000*a);
+  fill(0, 0, 200);
+  rect(10*a, height/height*a, width*a*100, 240*a);
+}
+
+
+
+void carDraw1(float e, float b, float a, float x, float d, float c) {
+  if (colisao1) {
+    fill(random(255), random(255), random(255));
+  } else {
+    fill(0, b, e);
   circle(x+175*a, height/6*3*a, 50*a);
   circle(x-75*a, height/6*3*a, 50*a);
   rect(x-100*a, height/2*0.85*a, 300*a, 60*a);
   rect(x-100*a, height/2*0.7*a, 100*a, 60*a);
-  
-  fill(b, e, 0); 
+  }
+}
+
+//void casaDraw( float a){
+//  fill(255, 204, 0); 
+//  rect(width/1*a, height/0.55*a, 1900*a, 2500*a);
+//  triangle(width/1*a, 1900*a, height/0.55*a, 500*a, 1900*a, 2*a);
+//}
+ 
+void carDraw2(float e, float b, float a, float x, float d, float c) {
+   if (colisao1) {
+    fill(random(255), random(255), random(255));
+  } else {
+     fill(b, 0, c);
   circle(x2+175*a, height/6*3*a, 50*a);
   circle(x2-75*a, height/6*3*a, 50*a);
   rect(x2-100*a, height/2*0.85*a, 300*a, 60*a);
   rect(x2-100*a, height/2*0.7*a, 100*a, 60*a);
-}
-
-void colisao(float a, float b, float c, float d, float e, float s, boolean colisao1) {
-  if (colisao1) {
-    fill(random(255), random(255), random(255));
-    carDraw(e, b, a, x, d);;
-  } else {
-   carDraw(e, b, a, x, d); 
   }
 }
+
+
 
 
 
