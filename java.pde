@@ -8,7 +8,8 @@ float period1 = 720;
 float angle = 0;
 float angle1 = 360;
 float angle2 = 180;
-float h, j, k, l, t;
+float h, j, k, l, t, o;
+boolean colisao1;
 
 void setup() {
   size(2000, 800); 
@@ -17,11 +18,9 @@ void setup() {
 void draw() {
   background(255); 
   
-
   x = width/3 + amplitude * sin(angle);
   x1 = width/3 + amplitude1 * sin(angle1);
   x2 = width/3 + amplitude * sin(angle2);
-  
   
   float c = map(x, 0, width, 0, 255);
   float b = map(x, 0, width, 0, 255);
@@ -29,7 +28,6 @@ void draw() {
   float d = map(mouseX, 0, width, 100, 600);
   float a = d/400;
   float s = 100;
-  
   
   fill(0, 0, 0);
   rect(10*a, height/7*3*a, width*a*100, 200*a);
@@ -44,19 +42,21 @@ void draw() {
     rect(x1 + (i * espacamento), height / 6 * 3 * a, largura, altura);
   }
   
-  carDraw(e, b, a, x, d);
-  
+  t = 300*a;
   h = x-100*a;
   j = x2-100*a;
-  k = (x2-100*a) + (300*a);
-  l = (x-100*a) + (300*a);
-  boolean colisao = j<h && k>l;
+  k = j + t;
+  l = h + t;
+  o = 60*a;
   
+   colisao1 = h < j + t && j < h + t && l < k + o && k < l + o;
+  
+  colisao(a, b, c, d, e, s, colisao1);
+  carDraw(e, b, a, x, d);
+
   angle += TWO_PI / period;
   angle1 += TWO_PI / period1;
   angle2 += TWO_PI / period;
-  
-  colisao(e, b, a, x, d, h, j, k, l, colisao);
 }
 
 void carDraw(float e, float b, float a, float x, float d) {
@@ -73,11 +73,15 @@ void carDraw(float e, float b, float a, float x, float d) {
   rect(x2-100*a, height/2*0.7*a, 100*a, 60*a);
 }
 
-void colisao(float e, float b, float a, float x, float d, float h, float j, float k, float l, boolean colisao){
-  for (carDraw){
-    if (colisao) fill(random(255), random(255), random(255)) carDraw;
-  
+void colisao(float a, float b, float c, float d, float e, float s, boolean colisao1) {
+  if (colisao1) {
+    fill(random(255), random(255), random(255));
+    carDraw(e, b, a, x, d);;
+  } else {
+   carDraw(e, b, a, x, d); 
+  }
 }
+
 
 
 
